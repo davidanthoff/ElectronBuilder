@@ -3,7 +3,7 @@ using Pkg.BinaryPlatforms
 using URIParser, FilePaths
 
 pkgname = "ElectronJS"
-version = v"4.2.12"
+version = v"7.1.2"
 build = 0
 
 build_path = joinpath(@__DIR__, "build")
@@ -50,8 +50,6 @@ mktempdir() do temp_path
             download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-darwin-x64.zip"
         elseif platform isa Linux && arch(platform)==:x86_64
             download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-linux-x64.zip"
-        elseif platform isa Linux && arch(platform)==:i686
-            download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-linux-ia32.zip"
         elseif platform isa Linux && arch(platform)==:armv7l
             download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-linux-armv7l.zip"
         elseif platform isa Linux && arch(platform)==:aarch64
