@@ -85,11 +85,11 @@ mktempdir() do temp_path
 
             if platform isa MacOS
                 cd(artifact_dir) do
-                    run(`mv electron/Electron.app electron/Julia.app`)
-                    run(`mv electron/Julia.app/Contents/MacOS/Electron electron/Julia.app/Contents/MacOS/Julia`)
-                    run(`sed -i.bak 's/Electron/Julia/' electron/Julia.app/Contents/Info.plist`)
-                    run(`cp $(joinpath(@__DIR__, "..", "res", "julia-icns.icns")) electron/Julia.app/Contents/Resources/electron.icns`)
-                    run(`touch electron/Julia.app`)  # Apparently this is necessary to tell the OS to double-check for the new icons.
+                    run(`mv Electron.app Julia.app`)
+                    run(`mv Julia.app/Contents/MacOS/Electron Julia.app/Contents/MacOS/Julia`)
+                    run(`sed -i.bak 's/Electron/Julia/' Julia.app/Contents/Info.plist`)
+                    run(`cp $(joinpath(@__DIR__, "..", "res", "julia-icns.icns")) Julia.app/Contents/Resources/electron.icns`)
+                    run(`touch Julia.app`)  # Apparently this is necessary to tell the OS to double-check for the new icons.
                 end
             end
         end
