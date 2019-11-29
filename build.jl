@@ -88,7 +88,7 @@ mktempdir() do temp_path
                     run(`mv Electron.app Julia.app`)
                     run(`mv Julia.app/Contents/MacOS/Electron Julia.app/Contents/MacOS/Julia`)
                     run(`sed -i.bak 's/Electron/Julia/' Julia.app/Contents/Info.plist`)
-                    cp(joinpath(@__DIR__, "res", "julia-icns.icns"), "Julia.app/Contents/Resources/electron.icns")
+                    cp(joinpath(@__DIR__, "res", "julia-icns.icns"), "Julia.app/Contents/Resources/electron.icns", force=true)
                     run(`touch Julia.app`)  # Apparently this is necessary to tell the OS to double-check for the new icons.
                 end
             end
