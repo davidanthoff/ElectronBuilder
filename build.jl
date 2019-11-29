@@ -65,6 +65,8 @@ mktempdir() do temp_path
         download(download_url, download_filename)
 
         product_hash = create_artifact() do artifact_dir
+            download("http://junolab.s3.amazonaws.com/blink/julia.png", joinpath(artifact_dir, "julia.png"))
+
             if extension(download_filename) == "zip"
                 run(Cmd(`unzip $download_filename -d $artifact_dir`))
             else
@@ -79,6 +81,16 @@ mktempdir() do temp_path
                     mv(joinpath(artifact_dir, files[1], f), joinpath(artifact_dir, f))
                 end
                 rm(joinpath(artifact_dir, files[1]), force=true)
+            end
+
+            if platform isa MacOS
+                cd(artifact_dir) do
+                    run(`mv electron/Electron.app electron/Julia.app`)
+                    run(`mv electron/Julia.app/Contents/MacOS/Electron electron/Julia.app/Contents/MacOS/Julia`)
+                    run(`sed -i.bak 's/Electron/Julia/' electron/Julia.app/Contents/Info.plist`)
+                    run(`cp $(joinpath(@__DIR__, "..", "res", "julia-icns.icns")) electron/Julia.app/Contents/Resources/electron.icns`)
+                    run(`touch electron/Julia.app`)  # Apparently this is necessary to tell the OS to double-check for the new icons.
+                end
             end
         end
 
