@@ -4,7 +4,7 @@ using URIParser, FilePaths
 
 pkgname = "ElectronJS"
 version = v"9.1.0"
-build = 0
+build = 1
 
 build_path = joinpath(@__DIR__, "build")
 
