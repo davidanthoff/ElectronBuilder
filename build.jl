@@ -92,7 +92,7 @@ mktempdir() do temp_path
             end
 
             if platform isa Windows
-                run(`chmod +x electron.exe`)
+                run(`chmod +x {electron.exe}`)
             end
         end
 
