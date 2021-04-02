@@ -58,7 +58,7 @@ mktempdir() do temp_path
             continue
         end
 
-        download_filename = Path(temp_path) / Path(basename(Path(URI(download_url).path)))
+        download_filename = joinpath(Path(temp_path), Path(basename(Path(URI(download_url).path))))
 
         download(download_url, download_filename)
 
