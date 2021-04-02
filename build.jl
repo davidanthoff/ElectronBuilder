@@ -90,6 +90,10 @@ mktempdir() do temp_path
                     run(`touch Julia.app`)  # Apparently this is necessary to tell the OS to double-check for the new icons.
                 end
             end
+
+            if platform isa Windows
+                run(`chmod +x electron.exe`)
+            end
         end
 
         archive_filename = "$pkgname-$version+$(build)-$(triplet(platform)).tar.gz"
