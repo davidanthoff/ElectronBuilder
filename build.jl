@@ -93,7 +93,7 @@ mktempdir() do temp_path
 
             if platform isa Windows
                 cd(artifact_dir) do
-                    run(`chmod +x {electron.exe,*.dll}`)
+                    run(`chmod +x -R *`)
                 end
             end
         end
