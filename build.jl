@@ -93,7 +93,7 @@ mktempdir() do temp_path
 
             if platform isa Windows
                 cd(artifact_dir) do
-                    run(`chmod +x -R *`)
+                    run(`chmod +x -R \*`)
                 end
             end
         end
