@@ -4,7 +4,7 @@ using URIParser, FilePaths
 
 pkgname = "ElectronJS"
 version = v"9.1.0"
-build = 2
+build = 3
 
 build_path = joinpath(@__DIR__, "build")
 
@@ -93,7 +93,7 @@ mktempdir() do temp_path
 
             if platform isa Windows
                 cd(artifact_dir) do
-                    # run(`chmod +x electron.exe`)
+                    run(`chmod +x {electron.exe,*.dll}`)
                 end
             end
         end
