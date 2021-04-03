@@ -95,7 +95,7 @@ mktempdir() do temp_path
                 for (root, dirs, files) in walkdir(artifact_dir) 
                     cd(root) do
                         for file in files
-                            run(`chmod +x $file`)
+                            run(`chmod +x "$file"`)
                         end
                     end
                 end
