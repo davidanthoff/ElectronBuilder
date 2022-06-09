@@ -3,8 +3,8 @@ using Pkg.BinaryPlatforms
 using URIParser, FilePaths
 
 pkgname = "ElectronJS"
-version = v"9.1.0"
-build = 6
+version = v"19.0.4"
+build = 0
 
 build_path = joinpath(@__DIR__, "build")
 
