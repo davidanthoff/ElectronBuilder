@@ -32,6 +32,7 @@ platforms = [
 
     # BSDs
     MacOS(:x86_64),
+    MacOS(:aarch64),
     FreeBSD(:x86_64),
 
     # Windows
@@ -46,8 +47,10 @@ mktempdir() do temp_path
             download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-win32-x64.zip"
         elseif platform isa Windows && arch(platform)==:i686
             download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-win32-ia32.zip"
-        elseif platform isa MacOS
+        elseif platform isa MacOS && arch(platform)==:x86_64
             download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-darwin-x64.zip"
+        elseif platform isa MacOS && arch(platform)==:aarch64
+            download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-darwin-arm64.zip"
         elseif platform isa Linux && arch(platform)==:x86_64
             download_url = "https://github.com/electron/electron/releases/download/v$version/electron-v$version-linux-x64.zip"
         elseif platform isa Linux && arch(platform)==:armv7l
@@ -92,7 +95,7 @@ mktempdir() do temp_path
             end
 
             if platform isa Windows
-                for (root, dirs, files) in walkdir(artifact_dir) 
+                for (root, dirs, files) in walkdir(artifact_dir)
                     cd(root) do
                         for file in files
                             run(`chmod u+x "$file"`)
